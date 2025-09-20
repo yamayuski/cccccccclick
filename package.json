@@ -12,7 +12,7 @@
     },
     "scripts": {
         "cf-typegen": "wrangler types ./src/server/worker-configuration.d.ts",
-        "predeploy": "tsc --project src && wrangler deploy --dry-run",
+        "predeploy": "tsc --noEmit && wrangler deploy --dry-run",
         "deploy": "npm run cf-typegen && npm run build && wrangler deploy",
         "build": "vite build",
         "dev": "vite dev"

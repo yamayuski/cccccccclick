@@ -2,6 +2,7 @@ name = "cccccccclick"
 compatibility_date = "2025-09-15"
 main = "src/server/main.mts"
 workers_dev = true
+preview_urls = true
 
 [assets]
 not_found_handling = "single-page-application"
