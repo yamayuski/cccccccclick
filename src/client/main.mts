@@ -27,6 +27,12 @@ window.addEventListener('load', async () => {
         countSpan.textContent = formatCount(newCount);
     });
 
+    setTimeout(async () => {
+        const response = await fetch('/api/click');
+        const currentCount = await response.text();
+        countSpan.textContent = formatCount(currentCount);
+    }, 3_000);
+
     const response = await fetch('/api/click');
     const currentCount = await response.text();
     countSpan.textContent = formatCount(currentCount);
