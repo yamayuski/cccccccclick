@@ -2,7 +2,6 @@ import { DurableObject } from "cloudflare:workers";
 
 export interface Env {
     COUNTER: DurableObjectNamespace<Counter>;
-    ASSETS: Fetcher;
 }
 
 export class Counter extends DurableObject {
@@ -37,12 +36,11 @@ export default {
     async fetch(request: Request, env: Env): Promise<Response> {
         const url = new URL(request.url);
 
-        if (url.pathname === "/click") {
+        if (url.pathname === "/api/click") {
             const stub = env.COUNTER.getByName("Counter");
             if (request.method === "GET") {
                 const current = await stub.getCurrent();
                 return new Response(current.toString(), {
-                    encodeBody: "manual",
                     headers,
                     status: 200,
                 });
@@ -50,16 +48,17 @@ export default {
             if (request.method === "POST") {
                 const newValue = await stub.increment();
                 return new Response(newValue.toString(), {
-                    encodeBody: "manual",
                     headers,
                     status: 200,
                 });
             }
-            return new Response("", {
+            return new Response(null, {
                 status: 405,
             });
         }
 
-        return env.ASSETS.fetch(request);
+        return new Response(null, {
+            status: 404,
+        });
     }
 } satisfies ExportedHandler<Env>;

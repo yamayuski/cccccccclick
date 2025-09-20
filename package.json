@@ -1,17 +1,21 @@
 {
     "name": "@yamayuski/cccccccclick",
     "description": "Let's make click!!!!",
-    "dependencies": {},
+    "type": "module",
     "devDependencies": {
+        "@cloudflare/vite-plugin": "^1.13.3",
+        "@cloudflare/workers-types": "^4.20250920.0",
         "esbuild": "^0.25.10",
         "typescript": "^5.9.2",
+        "vite": "^7.1.6",
         "wrangler": "^4.37.1"
     },
     "scripts": {
-        "cf-typegen": "wrangler types ./src/worker-configuration.d.ts",
-        "check": "tsc --project src && wrangler deploy --dry-run",
-        "deploy": "npm run cf-typegen && wrangler deploy",
-        "dev": "wrangler dev"
+        "cf-typegen": "wrangler types ./src/server/worker-configuration.d.ts",
+        "predeploy": "tsc --project src && wrangler deploy --dry-run",
+        "deploy": "npm run cf-typegen && npm run build && wrangler deploy",
+        "build": "vite build",
+        "dev": "vite dev"
     },
     "engines": {
         "node": ">=22",

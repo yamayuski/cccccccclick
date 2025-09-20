@@ -1,5 +1,6 @@
 .wrangler/
+dist/
 node_modules/
-public/dist/
 .tool-versions
 worker-configuration.d.ts
+.dev.vars*

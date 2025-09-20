@@ -1,24 +1,8 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "lib": [
-            "esnext",
-            "DOM",
-            "DOM.AsyncIterable"
-        ],
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "noEmit": true,
-        "isolatedModules": true,
-        "forceConsistentCasingInFileNames": true,
-        "skipLibCheck": true,
-        "strict": true
-    },
-    "include": [
-        "src"
-    ],
-    "exclude": [
-        "node_modules",
-        "dist"
+    "files": [],
+    "references": [
+        { "path": "./tsconfig.browser.json" },
+        { "path": "./tsconfig.node.json" },
+        { "path": "./tsconfig.worker.json" }
     ]
 }
